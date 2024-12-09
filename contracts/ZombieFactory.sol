@@ -1,13 +1,17 @@
 // SPDX-License-Identifier: GPL-3.0
-
 pragma solidity ^0.8.20;
 
-import {Ownable} from "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v4.9.6/contracts/access/Ownable.sol";
-import {SafeMath} from "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v4.9.6/contracts/utils/math/SafeMath.sol";
+import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
+import {SafeMath} from "./SafeMath.sol";
 
 contract ZombieFactory is Ownable {
 
+    constructor() Ownable(msg.sender) {
+
+    }
+
     using SafeMath for uint256;
+
     event NewZombie(uint zombieId, string name, uint dna);
 
     uint dnaDigits = 16;
@@ -32,7 +36,7 @@ contract ZombieFactory is Ownable {
         uint id = zombies.length;
         zombies.push(Zombie({name: _name, dna: _dna, level: 1, readyTime: uint32(block.timestamp + cooldownTime), winCount: 0, lossCount: 0}));
         zombieToOwner[id] = msg.sender;
-        ownerZombieCount[msg.sender]++;
+        ownerZombieCount[msg.sender] = ownerZombieCount[msg.sender].add(1);
         emit NewZombie(id, _name, _dna);
     }
 
