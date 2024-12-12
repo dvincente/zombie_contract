@@ -6,6 +6,7 @@ const ETHERSCAN_API_KEY = vars.get("ETHERSCAN_API_KEY");
 
 // 0x3751e0E7Fb1a67A2a4dEE0f5C2d142B357e4BCb7  (Account 1)
 const SEPOLIA_PRIVATE_KEY = vars.get("SEPOLIA_PRIVATE_KEY");
+const MAINNET_PRIVATE_KEY = vars.get("MAINNET_PRIVATE_KEY");
 
 const config: HardhatUserConfig = {
   solidity: {
@@ -22,10 +23,15 @@ const config: HardhatUserConfig = {
       url: `https://sepolia.infura.io/v3/${INFURA_API_KEY}`,
       accounts: [SEPOLIA_PRIVATE_KEY],
     },
+    mainnet: {
+      url: `https://mainnet.infura.io/v3/${INFURA_API_KEY}`,
+      accounts: [MAINNET_PRIVATE_KEY],
+    }
   },
   etherscan: {
     apiKey: {
       sepolia: ETHERSCAN_API_KEY,
+      mainnet: ETHERSCAN_API_KEY
     },
   },
 };
