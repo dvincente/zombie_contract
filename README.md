@@ -12,6 +12,15 @@ npx hardhat node
 npx hardhat ignition deploy ./ignition/modules/Lock.ts
 ```
 
+Configuration Variable (stored in $HOME/.config/hardhat-nodejs/vars.json)
+
+```shell
+npx hardhat vars list
+npx hardhat vars get INFURA_API_KEY
+npx hardhat vars set INFURA_API_KEY
+npx hardhat vars delete INFURA_API_KEY
+```
+
 Compile, Deploy and Verify:
 
 ```shell
